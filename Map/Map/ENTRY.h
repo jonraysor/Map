@@ -11,18 +11,19 @@
 
 using namespace std;
 
-class ENTRY{
+class ENTRY : public pair<string, int>{
 
 private:
-    string key;
-    int value;
+    pair<string, int> theEntry;
     
 public:
-    
-    ENTRY(const string& key, const int value=0):key(key), value(value){}
-    
-    string getKey(){
-        return key;
+
+    ENTRY(const string& key, const int value=0){
+        theEntry.first = key;
+        theEntry.second = value;
+    }
+    /*string getKey(){
+        return theEntry.first;
     }
     
     int getValue(){
@@ -32,6 +33,7 @@ public:
     void setValue(int value){
         value = value;
     }
+     */
 };
 
 #endif /* ENTRY_h */

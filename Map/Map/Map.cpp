@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include "Map.hpp"
+#include "ValueNotFoundException.h"
 
 using namespace std;
 
@@ -18,7 +19,7 @@ bool Map::containsKey(const string& key){
     list<ENTRY>& bucketToSearch = theHashTable[bucket];
     
     for(list<ENTRY>::iterator it = bucketToSearch.begin(); it != bucketToSearch.end(); it++)
-        if(it -> getKey() == key)
+        if(it -> first == key)
             return true;
     
     return false;
@@ -28,7 +29,7 @@ bool Map::containsValue(int value){
     
     for(int i = 0; i < theHashTable.size(); i++)
         for(list<ENTRY> :: iterator it = theHashTable[i].begin(); it != theHashTable[i].end(); it++)
-            if(it -> getValue() == value)
+            if(it -> second == value)
                 return true;
     
     return false;
@@ -54,24 +55,55 @@ void Map::erase(const string& key){
     int bucket = findBucket(key);
     
     for(list<ENTRY> :: iterator it = theHashTable[bucket].begin(); it != theHashTable[bucket].end(); it++)
-        if(it -> getKey() == key)
+        if(it -> first == key)
             theHashTable[bucket].erase(it);
 }
 
 int Map::getValueOf(const string& key){
     
-    if (containsKey(key) == false)
-        return -1;
-    
+    if (containsKey(key) == false){
+        string errorMessage = "In Map::getValueof() an exception was thrown: Key not found.";
+        ValueNotFoundException error(errorMessage);
+        throw error;
+    }
     int bucket = findBucket(key);
     
     list<ENTRY>& bucketWithKey = theHashTable[bucket];
+    int valueToReturn = -1;
     
     for(list<ENTRY> :: iterator it = bucketWithKey.begin(); it != bucketWithKey.end(); it++)
-        if(it -> getKey() == key)
-            return it -> getValue();
+        if(it -> first == key)
+            valueToReturn = it -> second;
     
-    return -1;
+    if(valueToReturn == -1){
+        string errorMessage = "In Map::getValueof() an exception was thrown: Key not found.";
+        ValueNotFoundException error(errorMessage);
+        throw error;
+    }
+    
+    return valueToReturn;
+}
+
+int& Map::operator[](const string& key){
+
+    if (containsKey(key)){
+        
+        int bucket = findBucket(key);
+        
+        list<ENTRY>& bucketWithKey = theHashTable[bucket];
+            for(list<ENTRY> :: iterator it = bucketWithKey.begin(); it != bucketWithKey.end(); it++)
+                if(it -> first == key)
+                    return it -> second;
+    }
+    
+        insert(key);
+        int bucket = findBucket(key);
+        
+        list<ENTRY>& bucketWithKey = theHashTable[bucket];
+        for(list<ENTRY> :: iterator it = bucketWithKey.begin(); it != bucketWithKey.end(); it++)
+            if(it -> first == key)
+                return it -> second;
+    return;
 }
 
 
