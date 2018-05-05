@@ -28,6 +28,8 @@
 		ABAD1045209BE91300B86FD9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		ABAD104D209BE92300B86FD9 /* Map.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Map.hpp; sourceTree = "<group>"; };
 		ABAD1050209BF9A200B86FD9 /* Map.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Map.cpp; sourceTree = "<group>"; };
+		ABAD1052209D1C1300B86FD9 /* HashFn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HashFn.h; sourceTree = "<group>"; };
+		ABAD1053209D1D0200B86FD9 /* ENTRY.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ENTRY.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,8 @@
 				ABAD1045209BE91300B86FD9 /* main.cpp */,
 				ABAD104D209BE92300B86FD9 /* Map.hpp */,
 				ABAD1050209BF9A200B86FD9 /* Map.cpp */,
+				ABAD1053209D1D0200B86FD9 /* ENTRY.h */,
+				ABAD1052209D1C1300B86FD9 /* HashFn.h */,
 			);
 			path = Map;
 			sourceTree = "<group>";

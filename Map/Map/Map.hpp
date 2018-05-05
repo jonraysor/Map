@@ -11,29 +11,32 @@
 
 #include <iostream>
 #include <list>
-
+#include "HashFn.h"
+#include "ENTRY.h"
+#include <vector>
 using namespace std;
 
-template <class X, class Y>
 class Map {
-   
-    private:
-        vector<list<pair<X,Y>>> theHashTable;
-        list<int>& findBucket(Y);
+
+private:
     
-        template<class HASHFN>
-        HASHFN f;
+    vector<list<ENTRY>> theHashTable;
+    HashFn f;
+    int findBucket(string key){
+        return f(key,100);
+    }
+    int numElements;
     
-   
-    public:
-        void insert(const X&, Y);
-        bool containsKey(const X&);
-        bool containsValue(Y);
-        void erase(const X&);
-        Y getValueOf(const X&);
-        Y& operator[](const X&);
-        int size();
-        bool empty();
+public:
+    
+    bool containsKey(const string&);
+    void insert(const string&, const int);
+    bool containsValue(int);
+    void erase(const string&);
+    int getValueOf(const string&);
+    int& operator [](const string&);
+    int size();
+    bool empty();
     
 };
 
