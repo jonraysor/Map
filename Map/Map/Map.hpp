@@ -25,6 +25,7 @@ private:
     int findBucket(string key){
         return f(key,100);
     }
+    int noValue;
     int numElements;
     
 public:

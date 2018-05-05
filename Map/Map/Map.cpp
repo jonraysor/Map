@@ -45,6 +45,8 @@ void Map::insert(const string& key, const int value=0){
     int bucket = findBucket(key);
     
     theHashTable[bucket].push_back(toBeEntered);
+    
+    numElements ++;
 }
 
 void Map::erase(const string& key){
@@ -57,6 +59,8 @@ void Map::erase(const string& key){
     for(list<ENTRY> :: iterator it = theHashTable[bucket].begin(); it != theHashTable[bucket].end(); it++)
         if(it -> first == key)
             theHashTable[bucket].erase(it);
+    
+    numElements --;
 }
 
 int Map::getValueOf(const string& key){
@@ -103,7 +107,15 @@ int& Map::operator[](const string& key){
         for(list<ENTRY> :: iterator it = bucketWithKey.begin(); it != bucketWithKey.end(); it++)
             if(it -> first == key)
                 return it -> second;
-    return;
+    
+    return noValue;
 }
 
+int Map::size(){
+    return numElements;
+}
+
+bool Map::empty(){
+    return (numElements==0)? true : false;
+}
 
