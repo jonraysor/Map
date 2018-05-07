@@ -22,7 +22,7 @@ public:
         int hashCode = 0;
         
         for(int i = 0; i < key.length(); i++){
-            hashCode+=i;
+            hashCode+=key[i];
         }
         return hashCode % sizeOfTable;
     }

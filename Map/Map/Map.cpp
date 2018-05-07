@@ -12,13 +12,21 @@
 
 using namespace std;
 
+Map::Map(){
+    
+    vector<list<ENTRY>> theHashTable(100);
+    noValue = 0;
+    numElements = 0;
+    
+}
+
 bool Map::containsKey(const string& key){
     
     int bucket = findBucket(key);
     
     list<ENTRY>& bucketToSearch = theHashTable[bucket];
     
-    for(list<ENTRY>::iterator it = bucketToSearch.begin(); it != bucketToSearch.end(); it++)
+    for(list<ENTRY>::const_iterator it = bucketToSearch.begin(); it != bucketToSearch.end(); it++)
         if(it -> first == key)
             return true;
     

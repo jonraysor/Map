@@ -29,7 +29,7 @@ private:
     int numElements;
     
 public:
-    
+    Map();
     bool containsKey(const string&);
     void insert(const string&, const int);
     bool containsValue(int);
