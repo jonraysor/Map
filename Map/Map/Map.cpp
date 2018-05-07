@@ -14,13 +14,17 @@ using namespace std;
 
 Map::Map(){
     
-    vector<list<ENTRY>> theHashTable(100);
+    vector<list<ENTRY>> temp(100);
+    theHashTable = temp;
     noValue = 0;
     numElements = 0;
     
 }
 
 bool Map::containsKey(const string& key){
+    
+    if(theHashTable.empty())
+        return false;
     
     int bucket = findBucket(key);
     
