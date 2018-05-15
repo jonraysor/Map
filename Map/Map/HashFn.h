@@ -17,14 +17,14 @@ class HashFn{
     
 public:
     
-    int operator ()(const string& key, int sizeOfTable){
+    int operator ()(const string& key){
         
         int hashCode = 0;
         
         for(int i = 0; i < key.length(); i++){
             hashCode+=key[i];
         }
-        return hashCode % sizeOfTable;
+        return hashCode % 100;
     }
     
 };

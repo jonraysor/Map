@@ -23,7 +23,7 @@ private:
     vector<list<ENTRY>> theHashTable;
     HashFn f;
     int findBucket(string key){
-        return f(key,100);
+        return f(key);
     }
     int noValue;
     int numElements;

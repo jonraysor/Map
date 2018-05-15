@@ -19,8 +19,8 @@ private:
 public:
 
     ENTRY(const string& key, const int value=0){
-        theEntry.first = key;
-        theEntry.second = value;
+       first = key;
+       second = value;
     }
     /*string getKey(){
         return theEntry.first;

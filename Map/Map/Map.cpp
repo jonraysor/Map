@@ -23,16 +23,15 @@ Map::Map(){
 
 bool Map::containsKey(const string& key){
     
-    if(theHashTable.empty())
-        return false;
-    
     int bucket = findBucket(key);
     
     list<ENTRY>& bucketToSearch = theHashTable[bucket];
     
-    for(list<ENTRY>::const_iterator it = bucketToSearch.begin(); it != bucketToSearch.end(); it++)
+    for(list<ENTRY> :: const_iterator it = bucketToSearch.begin(); it != bucketToSearch.end(); it++)
+    
         if(it -> first == key)
             return true;
+    
     
     return false;
 }
@@ -40,7 +39,7 @@ bool Map::containsKey(const string& key){
 bool Map::containsValue(int value){
     
     for(int i = 0; i < theHashTable.size(); i++)
-        for(list<ENTRY> :: iterator it = theHashTable[i].begin(); it != theHashTable[i].end(); it++)
+        for(list<ENTRY> :: const_iterator it = theHashTable[i].begin(); it != theHashTable[i].end(); it++)
             if(it -> second == value)
                 return true;
     
@@ -78,7 +77,8 @@ void Map::erase(const string& key){
 int Map::getValueOf(const string& key){
     
     if (containsKey(key) == false){
-        string errorMessage = "In Map::getValueof() an exception was thrown: Key not found.";
+        string errorMessage = "In Map::getValueof() an exception was thrown: Key () not found.";
+        errorMessage.insert(51,key);
         ValueNotFoundException error(errorMessage);
         throw error;
     }
@@ -92,7 +92,8 @@ int Map::getValueOf(const string& key){
             valueToReturn = it -> second;
     
     if(valueToReturn == -1){
-        string errorMessage = "In Map::getValueof() an exception was thrown: Key not found.";
+        string errorMessage = "In Map::getValueof() an exception was thrown: Key () not found";
+        errorMessage.insert(51,key);
         ValueNotFoundException error(errorMessage);
         throw error;
     }
